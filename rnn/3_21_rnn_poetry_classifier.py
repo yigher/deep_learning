@@ -1,7 +1,12 @@
+import matplotlib
+matplotlib.use('tkagg')
 import numpy as np
 import theano
 import theano.tensor as T
 import matplotlib.pyplot as plt
+import sys
+import os
+file_name = os.path.basename(sys.argv[0]
 
 from sklearn.utils import shuffle
 from util import init_weight, get_poetry_classifier_data
@@ -94,7 +99,9 @@ class SimpleRNN:
 
         if show_fig:
             plt.plot(costs)
-            plt.savefig("costs.png")
+            plt.show()
+            plt.plot(costs)
+            plt.savefig(file_name+"_cost.png")
     
     def save(self, filename):
         np.savez(filename, *[p.get_value() for p in self.params])

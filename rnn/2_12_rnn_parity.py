@@ -1,10 +1,16 @@
+import matplotlib
+matplotlib.use('tkagg')
 import numpy as np
 import theano
 import theano.tensor as T
 import matplotlib.pyplot as plt
+import sys
+import os
+file_name = os.path.basename(sys.argv[0])
 
 from util import init_weight, all_parity_pairs_with_sequence_labels
 from sklearn.utils import shuffle
+
 
 class SimpleRNN:
     """SimpleRNN"""
@@ -100,7 +106,9 @@ class SimpleRNN:
         
         if show_fig:
             plt.plot(costs)
-            plt.savefig("costs.png")
+            plt.show()
+            plt.plot(costs)
+            plt.savefig(file_name+"_cost.png")
 
 def parity(B=12, learning_rate=10e-5, epochs=200):
     X, Y = all_parity_pairs_with_sequence_labels(B)

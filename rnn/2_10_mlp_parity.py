@@ -1,10 +1,17 @@
+import matplotlib
+matplotlib.use('tkagg')
 import numpy as np
 import theano
 import theano.tensor as T
 import matplotlib.pyplot as plt
+import sys
+import os
+file_name = os.path.basename(sys.argv[0])
 
 from util import init_weight, all_parity_pairs
 from sklearn.utils import shuffle
+
+
 
 class HiddenLayer:
     """HiddenLayer"""
@@ -92,7 +99,9 @@ class ANN:
                     print("i: ", i, ", j: ", j, ", n_batches: ", n_batches, " cost: ", cost_out, ", error_rate: ", error_rate)
         if show_fig:
             plt.plot(costs)
-            plt.savefig("cost.png")
+            plt.show()
+            plt.plot(costs)
+            plt.savefig(file_name+"_cost.png")
 
     def forward(self, X):
         """forward"""

@@ -46,7 +46,8 @@ def all_parity_pairs_with_sequence_labels(nbit):
     return X, Y_t
 
 def remove_punctuation(s):
-    return s.translate(None, string.punctuation)
+    translator = str.maketrans('', '', string.punctuation)
+    return s.translate(translator)
 
 def get_robert_frost():
     word2idx = {'START': 0, 'END': 1}
